@@ -2,7 +2,7 @@ package io.jovi.gyaradoseu.algorithm.primary.array;
 
 /**
  * <p>
- * Title:
+ * Title:删除排序数组中的重复项
  * </p>
  * <p>
  * Description:
