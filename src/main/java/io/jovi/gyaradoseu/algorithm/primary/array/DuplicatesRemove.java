@@ -37,10 +37,15 @@ public class DuplicatesRemove {
         return index;
     }
 
+    /**
+     * 主程序
+     * @param args
+     */
     public static void main(String[] args){
         int[] nums = new int[]{0,0,1,1,1,2,2,3,3,4};
         int index = removeDuplicates(nums);
         System.out.println(index);
     }
+
 
 }
