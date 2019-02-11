@@ -37,7 +37,10 @@ import java.util.Set;
  */
 public class ContainsDuplicate {
     /**
-     *
+     * 存在重复
+     * 解题思路:
+     * 1. 建立一个set集合(set集合不存在重复数据)
+     * 2. 依次遍历数组，如果存在set集合存在，则说明存在重复；如果不存在，将值塞入set集合中，以便于下次查询。
      * @param nums
      * @return
      */
@@ -54,7 +57,11 @@ public class ContainsDuplicate {
     }
 
     /**
-     * 存在
+     * 存在重复
+     * 解题思路:
+     * 1. 判断数组长度，如果数组长度只有1 不会存在重复
+     * 2. 对数组按照从小到大排序
+     * 3. 判断相邻是否重复，如果存在重复，则为true。
      * @param nums
      * @return
      */

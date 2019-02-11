@@ -39,6 +39,8 @@ package io.jovi.gyaradoseu.algorithm.primary.array;
 public class Rotate {
     /**
      * 对于一个数组向右旋转k个位置
+     * 解题思路:
+     * 1. 向右循环依次，共循环k次
      * @param nums
      * @param k
      */
@@ -64,7 +66,16 @@ public class Rotate {
         return nums;
 
     }
-
+    /**
+     * 对于一个数组向右旋转k个位置
+     * 解题思路:
+     * 1. 数向右循环k个位置后的下标=(i+k)%l
+     * i为当前数的下标
+     * k为向右旋转k个位置
+     * l为数组长度
+     * @param nums
+     * @param k
+     */
     public static int[] rotate2(int[] nums, int k) {
         if(k<=0){
             return nums;
