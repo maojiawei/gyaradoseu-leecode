@@ -2,7 +2,7 @@ package io.jovi.gyaradoseu.algorithm.primary.array;
 
 /**
  * <p>
- * Title:
+ * Title: 卖卖股票额最佳时机2
  * </p>
  * <p>
  * Description:
@@ -41,7 +41,15 @@ package io.jovi.gyaradoseu.algorithm.primary.array;
  * @version 1.0
  */
 public class BestChanceOfShares {
-
+    /**
+     * 卖卖股票额最佳时机2
+     * 解题思路:
+     * 1.建立一个总的收益变量，初始为0
+     * 1.从第二天开始依次减去前一天的价格获得本次买卖的收益
+     * 2.判断收益是否为正，如果为正，累加进入收益变量中；如果为负，不做任何操作。
+     * @param prices
+     * @return
+     */
     public static int maxProfit(int[] prices) {
         // 获取的利润
         int profit = 0;

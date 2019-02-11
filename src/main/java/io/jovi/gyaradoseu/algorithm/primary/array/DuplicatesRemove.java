@@ -2,7 +2,7 @@ package io.jovi.gyaradoseu.algorithm.primary.array;
 
 /**
  * <p>
- * Title:删除排序数组中的重复项
+ * Title: 删除排序数组中的重复项
  * </p>
  * <p>
  * Description:
@@ -51,6 +51,8 @@ package io.jovi.gyaradoseu.algorithm.primary.array;
 public class DuplicatesRemove {
     /**
      * 排序数组去重
+     * 解题思路：
+     * 1.
      * @param nums
      * @return
      */
