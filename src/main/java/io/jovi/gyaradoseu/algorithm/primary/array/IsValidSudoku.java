@@ -1,5 +1,8 @@
 package io.jovi.gyaradoseu.algorithm.primary.array;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * <p>
  * Title:有效的数独
@@ -77,7 +80,125 @@ public class IsValidSudoku {
      */
     public static boolean isValidSudoku(char[][] board) {
 
-        return false;
+        //用于查看数组中字符的合法性
+        Set<Character> charSet = new HashSet<>();
+        charSet.add('1');
+        charSet.add('2');
+        charSet.add('3');
+        charSet.add('4');
+        charSet.add('5');
+        charSet.add('6');
+        charSet.add('7');
+        charSet.add('8');
+        charSet.add('9');
+        charSet.add('.');
+        //用于查重
+        Set<Character> set = new HashSet<>();
+
+        //1.遍历每一行不存在同样的数据(只包含1-9与.)，且长度为9。
+        if(board.length != 9){
+            System.out.println("i的数组长度不合法");
+            return false;
+        }
+        for(int i = 0;i<board.length;i++){
+            for(int j=0;j<board[i].length;j++){
+                //判断j的长度是否合法
+                if(board[i].length != 9){
+                    System.out.println("j的数组长度不合法");
+                    return false;
+                }
+                //判断数字是否合法
+                char c = board[i][j];
+                if(!charSet.contains(c)){
+                    System.out.println(String.format("字符不合法,i:%s,j:%s,c:%s",i,j,c));
+                    return false;
+                }
+                //判断是否之前已经包含了当前数字 且 .是可以重复的所以排除
+                if(set.contains(c) && c!= '.'){
+                    System.out.println(String.format("横列字符包含重复,i:%s,j:%s,c:%s",i,j,c));
+                    return false;
+                }
+                set.add(c);
+            }
+            set.clear();
+        }
+        //2. 判断每一列数据不重复
+        for(int i = 0;i<board.length;i++){
+            for(int j=0;j<board[i].length;j++){
+                char c = board[j][i];
+                //判断是否之前已经包含了当前数字 且 .是可以重复的所以排除
+                if(set.contains(c) && c!= '.'){
+                    System.out.println(String.format("纵列字符包含重复,i:%s,j:%s,c:%s",i,j,c));
+                    return false;
+                }
+                set.add(c);
+            }
+            set.clear();
+        }
+        //3. 查看每一个小方格中是否存在重复的数据
+        //3.1 首先找到起始点 i、j代表起始点的坐标(i为横坐标，j为纵坐标)
+        for(int i=0;i<9;i+=3){
+            for(int j=0;j<9;j+=3){
+                //a为起始点横坐标i扩展至小方格尽头及i+2
+                int iBig = i+2;
+                for(int a=i;a<=iBig;a++){
+                    //b为起始点纵坐标j扩展至小方格尽头及i+2
+                    int jBig = j+2;
+                    for(int b=j;b<=jBig;b++) {
+                        char c = board[a][b];
+                        //判断是否之前已经包含了当前数字 且 .是可以重复的所以排除
+                        if (set.contains(c) && c != '.') {
+                            System.out.println(String.format("小方格中包含重复,a:%s,b:%s,c:%s", a, b, c));
+                            return false;
+                        }
+                        set.add(c);
+                    }
+                }
+                set.clear();
+
+            }
+
+        }
+        return true;
+    }
+
+    public static boolean isValidSudoku2(char[][] board) {
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                if(board[i][j] == '.')continue;
+                //判断纵行是否存在相同数据
+                for(int k = 8; k > j; k-- )
+                    if(board[i][j] == board[i][k])
+                        return false;
+                //判断横行是否存在相同数据
+                for(int k = 8; k > i; k--)
+                    if(board[i][j] == board[k][j])
+                        return false;
+                //判断周围的小方格 是否存在相同的数据
+                for(int k = i + 1; k % 3 != 0; k ++){
+                    for(int h = j /3 *3;h < j / 3 *3 + 3; h ++ )
+                        if(board[i][j] == board[k][h])
+                            return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        char[][] board = {
+            {'.','.','.','.','5','.','.','1','.'},
+            {'.','4','.','3','.','.','.','.','.'},
+            {'.','.','.','.','.','3','.','.','1'},
+            {'8','.','.','.','.','.','.','2','.'},
+            {'.','.','2','.','7','.','.','.','.'},
+            {'.','1','5','.','.','.','.','.','.'},
+            {'.','.','.','.','.','2','.','.','.'},
+            {'.','2','.','9','.','.','.','.','.'},
+            {'.','.','4','.','.','.','.','.','.'}
+        } ;
+        boolean flag = isValidSudoku2(board);
+        System.out.println(flag);
     }
 
 }
