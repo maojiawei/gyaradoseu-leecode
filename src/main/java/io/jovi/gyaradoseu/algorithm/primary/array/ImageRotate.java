@@ -56,7 +56,33 @@ package io.jovi.gyaradoseu.algorithm.primary.array;
  * @version 1.0
  */
 public class ImageRotate {
-    public void rotate(int[][] matrix) {
+    /**
+     * 逻辑在https://www.cnblogs.com/grandyang/p/4389572.html
+     * @param matrix
+     */
+    public static void rotate(int[][] matrix) {
+        int n = matrix.length;
+        for (int i = 0; i < n / 2; ++i) {
+            for (int j = i; j < n - 1 - i; ++j) {
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[n - 1 - j][i];
+                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];
+                matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];
+                matrix[j][n - 1 - i] = tmp;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+                {1,2,3},
+                {4,5,6},
+                {7,8,9}
+        };
+
+        rotate(matrix);
+
+        System.out.println(matrix);
 
     }
 }
