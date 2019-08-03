@@ -37,8 +37,9 @@ public class IsPalindrome {
      */
     public static boolean isPalindrome(String s) {
         if("".equals(s)){
-            return false;
+            return true;
         }
+        s = s.toLowerCase();
         int i = 0;
         int j = s.length()-1;
         while (i < j){
