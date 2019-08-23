@@ -57,6 +57,7 @@ public class StrStr {
             if(end > haystackLength){
                 break;
             }
+            //重新组合 字符串与需要对比的进行对比
             String s = new String();
             for(int j=i;j<end;j++){
                 s += chars[j];
