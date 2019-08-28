@@ -49,12 +49,32 @@ public class LongestCommonPrefix {
                 min = l;
             }
         }
-        //
-        return "";
+        //从1-min进行循环 然后查询strs中的前缀是否一致
+        String prefix = "";
+        boolean flag = true;
+        for(int i=0;i< min;i++){
+            // 等待匹配的字符
+            char c = strs[0].charAt(i);
+            for(String s:strs){
+                char cs = s.charAt(i);
+                if(cs != c){
+                    flag = false;
+                    break;
+                }
+            }
+            if(!flag){
+                break;
+            }
+            prefix += c;
+        }
+        return prefix;
     }
 
     public static void main(String[] args) {
-
+//        String[] strs = new String[]{"flower","flow","flight"};
+        String[] strs = new String[]{"aaa","aaa","aaab"};
+        String prefix = longestCommonPrefix(strs);
+        System.out.println(prefix);
     }
 
 
