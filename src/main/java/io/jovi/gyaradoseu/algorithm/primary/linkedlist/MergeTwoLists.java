@@ -47,10 +47,11 @@ public class MergeTwoLists {
         ListNode n1 = l1;
         ListNode n2 = l2;
         while (n1.next != null && n2 !=null){
-            int valN1 = n1.next.val;
-            int valN2 = l2.val;
+            int valN11 = n1.val;
+            int valN12 = n1.next.val;
+            int valN2 = n2.val;
 
-            if(valN1 <  valN2){
+            if( !(valN11 <= valN2 && valN2 <= valN12) ){
                 n1 = n1.next;
                 continue;
             }
@@ -58,7 +59,7 @@ public class MergeTwoLists {
             ListNode n4 = n2.next;
 
             n1.next = n2;
-            n1 = n3;
+            n1 = n2;
 
             n2.next = n3;
             n2 = n4;
@@ -81,6 +82,19 @@ public class MergeTwoLists {
         n21.next = n22;
         ListNode n23 = new ListNode(6);
         n22.next = n23;
+
+//        //        1,2,4
+//        ListNode n11 = new ListNode(1);
+//        ListNode n12 = new ListNode(2);
+//        n11.next = n12;
+//        ListNode n13 = new ListNode(4);
+//        n12.next = n13;
+////      1,3,4
+//        ListNode n21 = new ListNode(1);
+//        ListNode n22 = new ListNode(3);
+//        n21.next = n22;
+//        ListNode n23 = new ListNode(4);
+//        n22.next = n23;
 
         ListNode node = mergeTwoLists(n11,n21);
 
