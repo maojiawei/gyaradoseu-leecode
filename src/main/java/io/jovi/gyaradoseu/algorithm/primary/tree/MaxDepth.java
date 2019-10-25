@@ -46,6 +46,20 @@ public class MaxDepth {
         return length;
     }
 
+    public static int maxDepth2(TreeNode root) {
+        if(root!=null) {
+            //获取左子树的高度
+            int n1=this.maxDepth2(root.left);
+            //获取右子树的高度
+            int n2=this.maxDepth2(root.right);
+            //返回左子树，右子树较大的高度+1
+            return n1>n2?n1+1:n2+1;
+        }else {
+            return 0;
+        }
+    }
+
+
     public static void main(String[] args) {
         TreeNode root = new TreeNode(3);
         // 二叉树第二层
