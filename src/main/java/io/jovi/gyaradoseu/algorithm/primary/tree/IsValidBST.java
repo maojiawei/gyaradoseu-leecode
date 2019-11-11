@@ -86,6 +86,9 @@ public class IsValidBST {
         }
     }
     // 别人的解答
+    /**
+     *
+     */
     static long last = Long.MIN_VALUE;
     public static boolean isValidBST2(TreeNode root) {
         return inOrder(root);
