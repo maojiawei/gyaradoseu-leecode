@@ -16,7 +16,7 @@ package io.jovi.gyaradoseu.algorithm.sort.merge;
  */
 public class MergeSort {
     public static void main(String[] args) {
-        int[] nums = new int[]{5, 2, 8, 4, 1};
+        int[] nums = new int[]{1,5,7,6,2,4};
 
         nums = mergeSort(nums);
 
@@ -31,66 +31,53 @@ public class MergeSort {
      * @return
      */
     public static int[] mergeSort(int[] nums) {
-        split(nums,0,nums.length -1 );
+        split(nums,0,nums.length -1);
         return nums;
     }
 
     /**
      * 分解
-     * @param array 数据
-     * @param low 分解的起始位置
-     * @param high 最高位置
+     * @param nums 数据
+     * @param start 分解的起始位置
+     * @param end 最高位置
      */
-    public static void split(int[] array, int low, int high) {
-        //如果起始位置大于最高位置 则不必进行分解
-        if (low + 1 >= high) {
+    public static void split(int[] nums,int start,int end) {
+        if(start >= end){
             return;
         }
-        // 中间
-        int mid = (low + high) / 2;
-        // 前半至中间部分进行拆分
-        split(array, low, mid);
-        // 中间至最后部分进行拆分
-        split(array, mid, high);
-        merge(array, low, mid, high);
+        int mid = start + (end - start) /2;
+        split(nums,0,mid);
+        split(nums,mid+1,end);
+        merge(nums,start,mid,end);
     }
 
     /**
      * 合并并排序
-     * @param array 数组
-     * @param low 起始位置
+     * @param nums 数组
+     * @param left 起始位置
      * @param mid 中间位置
-     * @param high 终止位置
+     * @param right 终止位置
      */
-    private static void merge(int[] array, int low, int mid, int high) {
-        int length = high - low;
-        // 新建数组 用于存放排序过的元素
-        int[] temp = new int[length];
-        //[low,mid]
-        //[mid,high]
-        int less = low;
-        int great = mid;
-        int i = 0;
-        // 遍历两个数组，按照大小放入新建的数组中
-        while (less < mid && great < high) {
-            if (array[less] <= array[great]) {
-                temp[i] = array[less];
-                less++;
-                i++;
-            } else {
-                temp[i] = array[great];
-                great++;
-                i++;
+    private static void merge(int[] nums,int left,int mid,int right) {
+        int[] temp = new int[nums.length];
+        int i = left;
+        int j = mid+1;
+        int k = left;
+        while (i <= mid && j <= right){
+            if(nums[i] > nums[j]){
+                temp[k++] = nums[j++];
+                continue;
             }
+            temp[k++] = nums[i++];
         }
-        while (less < mid) {
-            temp[i++] = array[less++];
+        while (i <= mid) {
+            temp[k++] = nums[i++];
         }
-        while (great < high) {
-            temp[i++] = array[great++];
+        while (j <= right) {
+            temp[k++] = nums[j++];
         }
-        for (int j = 0; j < length; j++) {
-            array[low + j] = temp[j];
+        for(int p = left; p <=right; p++){
+            nums[p]=temp[p];
         }
     }
 }
