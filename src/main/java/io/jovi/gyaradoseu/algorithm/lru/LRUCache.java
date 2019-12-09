@@ -35,6 +35,11 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
         cache.put(3, 3);
         System.out.println("4========================================");
         System.out.println(cache);
+
+        int a = cache.get(1);
+        System.out.println("5========================================");
+        System.out.println(a);
+        System.out.println(cache);
     }
 
     private LRUCache(int size) {
