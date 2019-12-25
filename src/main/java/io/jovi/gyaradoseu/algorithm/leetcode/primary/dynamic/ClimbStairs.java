@@ -51,7 +51,7 @@ public class ClimbStairs {
         int a = 1;
         //有2级台阶的情况
         int b = 2;
-        //辅助变量
+        //辅助变量 计算f(n-1) + f(n-2)
         int tmp = 0;
         for(int i = 3;i <= n;i++){
             tmp = a + b;
