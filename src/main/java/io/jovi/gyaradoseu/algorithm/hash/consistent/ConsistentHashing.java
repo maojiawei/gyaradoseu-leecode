@@ -1,5 +1,7 @@
 package io.jovi.gyaradoseu.algorithm.hash.consistent;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.SortedMap;
@@ -36,7 +38,7 @@ public class ConsistentHashing {
     private static SortedMap<Integer, String> virtualNodes = new TreeMap<Integer, String>();
 
     /**
-     * 虚拟节点的数目，这里写死，为了演示需要，一个真实结点对应5个虚拟节点
+     * 虚拟节点的数目，一个真实结点对应5个虚拟节点
      */
     private static final int VIRTUAL_NODES = 5;
 
@@ -102,9 +104,9 @@ public class ConsistentHashing {
             virtualNode = subMap.get(i);
         }
         //virtualNode虚拟节点名称要截取一下
-//        if(StringUtils.isNotBlank(virtualNode)){
-//            return virtualNode.substring(0, virtualNode.indexOf("&&"));
-//        }
+        if(StringUtils.isNotBlank(virtualNode)){
+            return virtualNode.substring(0, virtualNode.indexOf("&&"));
+        }
         return null;
     }
 }

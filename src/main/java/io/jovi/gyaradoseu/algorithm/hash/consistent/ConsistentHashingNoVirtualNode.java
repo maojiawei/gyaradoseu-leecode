@@ -60,8 +60,7 @@ public class ConsistentHashingNoVirtualNode {
             Map.Entry<Long, String> entry = realNodes.ceilingEntry(hashOfKey);
             if (entry != null){
                 return entry.getValue();
-            }
-            else{
+            } else{
                 return nodes[0];
             }
         }else{
