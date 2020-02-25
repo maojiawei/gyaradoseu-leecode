@@ -6,7 +6,7 @@ package io.jovi.gyaradoseu.algorithm.interview;
  * </p>
  * <p>
  * Description:
- * 使用固定长度的数组实现一个对垒
+ * 使用固定长度的数组实现一个队列
  * 要求:
  * 1. 时间复杂度O(1)
  * 2. 实现入队列和出队列两个方法
@@ -20,11 +20,11 @@ package io.jovi.gyaradoseu.algorithm.interview;
  */
 public class ArrayQueue {
     /**
-     * 写指针
+     * 写指针，指向入队列的位置
      */
     private int writeIndex;
     /**
-     * 读指针
+     * 读指针，指向出队列的位置
      */
     private int readIndex;
     /**
@@ -32,10 +32,12 @@ public class ArrayQueue {
      */
     private int size;
     /**
-     * 固定长度数据
+     * 固定长度数组
      */
     private int[] array = null;
-
+    /**
+     * 构造器，根据容量初始化数组
+     */
     public ArrayQueue(int capacity){
         array = new int[capacity];
     }
