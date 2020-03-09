@@ -15,13 +15,23 @@ package io.jovi.gyaradoseu.algorithm.leetcode.tree;
  * @version 1.0
  */
 public class TreeNode {
-
+    /**
+     * 树值
+     */
     int val;
-
+    /**
+     * 左子树
+     */
     TreeNode left;
-
+    /**
+     * 右子树
+     */
     TreeNode right;
 
+    /**
+     * 构造函数 含值
+     * @param x
+     */
     TreeNode(int x) { val = x; }
 
     public int getVal() {
