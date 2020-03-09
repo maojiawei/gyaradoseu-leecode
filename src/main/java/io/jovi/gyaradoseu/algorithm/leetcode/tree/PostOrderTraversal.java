@@ -2,6 +2,7 @@ package io.jovi.gyaradoseu.algorithm.leetcode.tree;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * <p>
@@ -38,6 +39,30 @@ public class PostOrderTraversal {
         }
         // 3. 遍历根节点
         list.add(root.getVal());
+        return list;
+    }
+
+    /**
+     * 后序遍历(迭代)
+     * 左右根
+     * @param root
+     * @return
+     */
+    public static List<Integer> postOrderTraversal2(TreeNode root){
+        List<Integer> list = new LinkedList<>();
+
+        Stack<TreeNode> stack = new Stack<>();
+        //首先将根节点压栈
+        stack.push(root);
+        while(!stack.isEmpty()) {
+            TreeNode ele = stack.pop(); //首先出栈的为根节点，其后先出右子节点，后出左子节点
+            if(ele.left != null)
+                stack.push(ele.left);  //将左子节点压栈
+            if(ele.right != null) {
+                stack.push(ele.right); //将右子节点压栈
+            }
+            list.add(ele.val); //因为出栈顺序为“根右左”，所以需要每次将元素插入list开头
+        }
         return list;
     }
 

@@ -51,7 +51,10 @@ public class InOrderTraversal {
     public static List<Integer> inOrderTraversal2(TreeNode root){
         List<Integer> list = new LinkedList<>();
         Stack<TreeNode> stack = new Stack<>();
+        // 因为栈（先进后出） 最左边的节点可以先取出
         while(!stack.isEmpty() || root != null) {
+            // 先压入左子树 直到不能压位置
+
             if(root != null) {
                 stack.push(root);
                 root = root.left;
