@@ -55,13 +55,18 @@ public class PostOrderTraversal {
         //首先将根节点压栈
         stack.push(root);
         while(!stack.isEmpty()) {
-            TreeNode ele = stack.pop(); //首先出栈的为根节点，其后先出右子节点，后出左子节点
-            if(ele.left != null)
-                stack.push(ele.left);  //将左子节点压栈
-            if(ele.right != null) {
-                stack.push(ele.right); //将右子节点压栈
+            //首先出栈的为根节点，其后先出右子节点，后出左子节点
+            TreeNode ele = stack.pop();
+            if(ele.left != null){
+                //将左子节点压栈
+                stack.push(ele.left);
             }
-            list.add(ele.val); //因为出栈顺序为“根右左”，所以需要每次将元素插入list开头
+            if(ele.right != null) {
+                //将右子节点压栈
+                stack.push(ele.right);
+            }
+            //因为出栈顺序为“根右左”，所以需要每次将元素插入list开头
+            list.add(ele.val);
         }
         return list;
     }

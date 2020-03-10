@@ -53,13 +53,14 @@ public class InOrderTraversal {
         Stack<TreeNode> stack = new Stack<>();
         // 因为栈（先进后出） 最左边的节点可以先取出
         while(!stack.isEmpty() || root != null) {
-            // 先压入左子树 直到不能压位置
-
+            // 先压入左子树 直到不能压为止
             if(root != null) {
                 stack.push(root);
                 root = root.left;
             }else {
+                // 当无左子树可压的时候 可以取出来 这时候就是最左边的节点
                 root = stack.pop();
+                list.add(root.val);
                 root = root.right;
             }
         }
@@ -89,5 +90,7 @@ public class InOrderTraversal {
 
         List<Integer> list = inOrderTraversal(root);
         System.out.println(list);
+        //[4, 6, 7, 2, 1, 5, 3]
+        //[4, 6, 7, 2, 1, 5, 3]
     }
 }
