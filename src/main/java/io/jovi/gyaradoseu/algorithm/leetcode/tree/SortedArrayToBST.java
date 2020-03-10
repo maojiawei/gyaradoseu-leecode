@@ -46,20 +46,20 @@ public class SortedArrayToBST {
 
     /**
      * @param nums
-     * @param l
-     * @param r
+     * @param start
+     * @param end
      * @return
      */
-    public static TreeNode getTree(int[] nums, int l, int r) {
+    public static TreeNode getTree(int[] nums, int start, int end) {
         // r是总长度 l是当前高度
-        if (r < l) {
+        if (start > end) {
             return null;
         }
         // 子树根节点
-        int mid = (r+1)/2;
+        int mid = start + (end -start)/2;
         TreeNode node = new TreeNode(nums[mid]);
-        node.left = getTree(nums,l,mid+1);
-        node.right = getTree(nums,mid+1,r);
+        node.left = getTree(nums,start,mid-1);
+        node.right = getTree(nums,mid+1,end);
         return node;
     }
 
