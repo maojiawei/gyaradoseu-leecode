@@ -49,9 +49,12 @@ public class PostOrderTraversal {
      * @return
      */
     public static List<Integer> postOrderTraversal2(TreeNode root){
+        // 结果集
         List<Integer> list = new LinkedList<>();
-
+        // 先将问题转变为 根-右-左
         Stack<TreeNode> stack = new Stack<>();
+        // 根据栈先进后出 ，将 根-右-左 翻转为 左-右-根
+        Stack<Integer> stack2 = new Stack<>();
         //首先将根节点压栈
         stack.push(root);
         while(!stack.isEmpty()) {
@@ -66,7 +69,11 @@ public class PostOrderTraversal {
                 stack.push(ele.right);
             }
             //因为出栈顺序为“根右左”，所以需要每次将元素插入list开头
-            list.add(ele.val);
+            stack2.add(ele.val);
+        }
+        // 利用辅助栈 翻转结果存入链表
+        while (!stack2.empty()){
+            list.add(stack2.pop());
         }
         return list;
     }
