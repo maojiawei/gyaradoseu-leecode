@@ -36,12 +36,12 @@ public class BreadFirstSearch {
             TreeNode node = queue.poll();
             list.add(node.val);
             // 左子节点 加入队列 左子节点先取出 先进先出
-            if(node.getLeft() != null){
-                queue.add(node.getLeft());
+            if(node.left != null){
+                queue.add(node.left);
             }
             // 右子节点 加入队列
-            if(node.getRight() != null){
-                queue.add(node.getRight());
+            if(node.right != null){
+                queue.add(node.right);
             }
         }
         return list;

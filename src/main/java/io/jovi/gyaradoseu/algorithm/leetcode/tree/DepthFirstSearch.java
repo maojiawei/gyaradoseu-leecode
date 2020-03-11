@@ -30,16 +30,17 @@ public class DepthFirstSearch {
             TreeNode node = stack.pop();
             list.add(node.val);
             // 先进后出 先取出左子树 所以先进右子树
-            if(node.getRight() != null){
-                stack.push(node.getRight());
+            if(node.right != null){
+                stack.push(node.right);
             }
-            // 后进先出 先取出左子树 所以后进左子树
-            if(node.getLeft() != null){
-                stack.push(node.getLeft());
+            // 后进左子树 后进先出
+            if(node.left != null){
+                stack.push(node.left);
             }
         }
         return list;
     }
+
     public static void main(String[] args) {
 
     }
