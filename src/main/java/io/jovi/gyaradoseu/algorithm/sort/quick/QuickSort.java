@@ -51,7 +51,7 @@ public class QuickSort {
         int base = nums[start];
         int i = start, j = end;
         while (i != j) {
-            // 顺序很重要，先从右边开始往左找，直到找到比base值小的数
+            // 先从右边开始往左找，直到找到比base值小的数
             while (nums[j] >= base && i < j) {
                 j--;
             }

@@ -47,15 +47,27 @@ package io.jovi.gyaradoseu.algorithm.leetcode.linkedlist;
  * @version 1.0
  */
 public class HasCycle {
+    /**
+     * 环形链表
+     * 利用快慢指针
+     * @param head
+     * @return
+     */
     public static boolean hasCycle(ListNode head) {
         if (head == null || head.next == null){
             return false;
         }
+        // 快指针每次走两步
         ListNode fast = head;
+        // 慢指针每次走一步
         ListNode slow = head;
+
+        // 快指针走的比较快 如果快指针走到尽快（即本身或下一指针为空）
+        // 即链表访问结束 没有环
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
+            // 快慢指针如果走到同一个地方说明有环
             if (slow == fast){
                 return true;
             }
