@@ -52,6 +52,8 @@ public class PostOrderTraversal {
         List<Integer> list = new LinkedList<>();
 
         Stack<TreeNode> stack = new Stack<>();
+        // 辅助栈
+        Stack<Integer> stack2 = new Stack<>();
         //首先将根节点压栈
         stack.push(root);
         while(!stack.isEmpty()) {
@@ -66,8 +68,12 @@ public class PostOrderTraversal {
                 stack.push(ele.right);
             }
             //因为出栈顺序为“根右左”，所以需要每次将元素插入list开头
-            list.add(ele.val);
+            stack2.push(ele.val);
         }
+        while (!stack2.empty()){
+            list.add(stack2.pop());
+        }
+
         return list;
     }
 
@@ -91,7 +97,8 @@ public class PostOrderTraversal {
         TreeNode node1122 = new TreeNode(7);
         node112.right = node1122;
 
-        List<Integer> list = postOrderTraversal(root);
+        List<Integer> list = postOrderTraversal2(root);
         System.out.println(list);
+        //[7, 6, 4, 2, 5, 3, 1]
     }
 }
