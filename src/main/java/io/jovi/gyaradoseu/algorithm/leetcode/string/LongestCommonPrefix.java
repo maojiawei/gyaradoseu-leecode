@@ -32,7 +32,7 @@ package io.jovi.gyaradoseu.algorithm.leetcode.string;
  */
 public class LongestCommonPrefix {
     /**
-     *
+     * 最长公共前缀
      * @param strs
      * @return
      */
