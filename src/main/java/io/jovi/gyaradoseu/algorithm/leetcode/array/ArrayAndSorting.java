@@ -39,33 +39,33 @@ public class ArrayAndSorting {
      * 搜索旋转排序数组
      */
     public static int search(int[] nums, int target) {
-        int low = 0;
-        int high = nums.length;
-        while (low < high){
-            int mid = low + (high - low) /2;
-            if(target == nums[mid]){
-                return mid;
-                // 4,5,6,7,0,1,2 -> mid = 7 target = 0
-            }else if(nums[mid] > target && nums[0] > target){
-                low = mid;
-                // 4,5,6,7,0,1,2 -> mid = 7 target = 5
-            }else if(nums[mid]> target && nums[0] < target){
-                high = mid;
-                //4,5,6,0,1,2,3 -> mid = 0 target=2
-            }else if(nums[mid] < target && nums[0] > target){
-                low = mid;
-            }else {
-                high = mid;
+        int begin = 0;
+        int end = nums.length - 1;
+
+        while (begin < end) {
+            int mid = (begin + end) / 2;
+            //[0,mid]是升序 说明旋转点在后面
+            // 如果目标值在后面 或者 目标值小于nums[0] 说明这个数在后面
+            if (nums[0] <= nums[mid] && (target > nums[mid] || target < nums[0])) {
+                begin = mid+1;
+
+                //[0,mid]中出现旋转点
+                // 往后走的条件是 目标值必须大于 nums[mid] 当前数字 并且小于第一个数字
+                // 7,9,1,3,5 如果target为3
+            } else if (target > nums[mid] && target < nums[0]) {
+                begin = mid + 1;
+            } else {
+                end = mid;
             }
         }
-        return -1;
+        return begin == end && nums[begin] == target ? begin : -1;
     }
 
     public static void main(String[] args) {
         int[] nums = new int[]{4,5,6,7,0,1,2};
         int target = 0;
         int i = search(nums,target);
-        System.out.print(i);
+        System.out.println(i);
     }
 
 }
