@@ -49,7 +49,7 @@ public class AddTwoNumbers {
         }
         // 初始节点
         ListNode firstNode = new ListNode(sum);
-        // 进行中的节点 以免下一个指针
+        // 进行中的节点 用来指向下一个节点(因为要保持初始节点的存在)
         ListNode processNode = firstNode;
         // 终止条件 两个链表任意一个没有下一个值得时候 断开
         while (l1.next!= null && l2.next != null){
