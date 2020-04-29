@@ -1,8 +1,5 @@
 package io.jovi.gyaradoseu.algorithm.leetcode.linkedlist;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * <p>
  * Title:  合并K个排序链表
@@ -31,8 +28,16 @@ import java.util.Map;
  * @version 1.0
  */
 public class MergeKLists {
+
+    /**
+     * 合并K个排序链表
+     * @param lists
+     * @return
+     */
     public static ListNode mergeKLists(ListNode[] lists) {
+        // 合并后的链表
         ListNode root = new ListNode(0);
+        // 合并后的链表中最后一个元素
         ListNode point = root;
         while (true) {
             // 最小值
@@ -51,8 +56,10 @@ public class MergeKLists {
             if (minVal == Integer.MAX_VALUE) {
                 break;
             }
+            // 将指针记录到 合并链表后的最后
             point.next = new ListNode(minVal);
             point = point.next;
+            // 移动最小元素对应的链表 直接排到下一个指针
             lists[position] = lists[position].next;
         }
         return root.next;
